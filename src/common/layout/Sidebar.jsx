@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const [businessName, setBusinessName] = useState(
     localStorage.getItem('businessName') || 'SmartBiz'
@@ -26,35 +26,35 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-brand">
         <h2 className="brand-name">{businessName}</h2>
-        <button className="menu-toggle">☰</button>
+        <button className="menu-toggle" onClick={onClose}>✕</button>
       </div>
 
       <nav className="sidebar-nav">
-        <NavLink to="/home" className={getNavClass} end>
+        <NavLink to="/home" className={getNavClass} end onClick={onClose}>
           <span className="nav-icon">⊞</span> Dashboard
         </NavLink>
-        <NavLink to="/products" className={getNavClass}>
+        <NavLink to="/products" className={getNavClass} onClick={onClose}>
           <span className="nav-icon">📦</span> Products
         </NavLink>
-        <NavLink to="/customers" className={getNavClass}>
+        <NavLink to="/customers" className={getNavClass} onClick={onClose}>
           <span className="nav-icon">👥</span> Customers
         </NavLink>
-        <NavLink to="/invoices" className={getNavClass}>
+        <NavLink to="/invoices" className={getNavClass} onClick={onClose}>
           <span className="nav-icon">📄</span> Invoices
         </NavLink>
-        <NavLink to="/ledger" className={getNavClass}>
+        <NavLink to="/ledger" className={getNavClass} onClick={onClose}>
           <span className="nav-icon">📘</span> Ledger
         </NavLink>
-        <NavLink to="/reports" className={getNavClass}>
+        <NavLink to="/reports" className={getNavClass} onClick={onClose}>
           <span className="nav-icon">📊</span> Reports
         </NavLink>
-        <NavLink to="/assistant" className={getNavClass}>
+        <NavLink to="/assistant" className={getNavClass} onClick={onClose}>
           <span className="nav-icon">🤖</span> AI Assistant
         </NavLink>
-        <NavLink to="/settings" className={getNavClass}>
+        <NavLink to="/settings" className={getNavClass} onClick={onClose}>
           <span className="nav-icon">⚙️</span> Settings
         </NavLink>
       </nav>

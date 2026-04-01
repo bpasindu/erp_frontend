@@ -7,7 +7,10 @@ import { API_BASE_URL as API_BASE } from '../../config';
 
 
 
+import { useNavigate } from 'react-router-dom';
+
 const InvoicesPage = () => {
+  const navigate = useNavigate();
   const [invoices, setInvoices] = useState([]);
   const [customers, setCustomers] = useState([]);
   const [products, setProducts] = useState([]);
@@ -241,13 +244,22 @@ const InvoicesPage = () => {
             Track issued invoices and their payment status.
           </p>
         </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleOpenModal}
-        >
-          + Create Invoice
-        </button>
+        <div className="page-actions" style={{ display: 'flex', gap: '0.75rem' }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => navigate('/customers')}
+          >
+            👥 Customers
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleOpenModal}
+          >
+            + Create Invoice
+          </button>
+        </div>
       </div>
 
       <div className="products-toolbar invoices-toolbar">

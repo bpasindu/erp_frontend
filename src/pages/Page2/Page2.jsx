@@ -142,6 +142,7 @@ const Page2 = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const token = localStorage.getItem('token');
   const user = (() => {
@@ -153,6 +154,9 @@ const Page2 = () => {
   })();
 
   const businessId = user?.businessId;
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const closeSidebar = () => setSidebarOpen(false);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -271,14 +275,14 @@ const Page2 = () => {
   }, [products]);
 
   return (
-    <div className="dashboard-layout">
+    <div className={`dashboard-layout ${sidebarOpen ? 'sidebar-open' : ''}`}>
       {/* Sidebar Overlay (Mobile) */}
-      <div className="sidebar-overlay"></div>
-      <Sidebar />
+      <div className="sidebar-overlay" onClick={closeSidebar}></div>
+      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 
       {/* Main Content Area */}
       <main className="main-content">
-        <TopHeader />
+        <TopHeader onMenuClick={toggleSidebar} />
 
         {/* Dashboard Content */}
         <div className="dashboard-wrapper">
@@ -291,6 +295,13 @@ const Page2 = () => {
                 onClick={() => navigate('/invoices')}
               >
                 + Create Invoice
+              </button>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={() => navigate('/customers')}
+              >
+                👥 Customers
               </button>
               <button
                 className="btn btn-secondary"

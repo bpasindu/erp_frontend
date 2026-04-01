@@ -228,7 +228,7 @@ const AiAssistantPage = () => {
     setChatLoading(true);
 
     try {
-      const prompt = `You are a helpful ERP AI assistant for a business using SmartBiz software. Answer the user's question concisely. Question: ${chatInput}`;
+      const prompt = chatInput;
       const replyData = await callNativeAI(prompt, 'CHAT');
       // If reply is undefined, it means the API call failed silently
       if (!replyData || !replyData.response) {
