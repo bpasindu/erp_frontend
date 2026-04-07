@@ -4,8 +4,8 @@ const getApiBaseUrl = () => {
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         return 'http://localhost:8080';
     }
-    // Production Render URL
-    return 'https://erp-backend-e9tc.onrender.com';
+    // Production AWS Domain
+    return 'https://biz.pasindubuddhima.me';
 };
 
 export const API_BASE_URL = getApiBaseUrl();
