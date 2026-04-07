@@ -5,7 +5,7 @@ const getApiBaseUrl = () => {
         return 'http://localhost:8080';
     }
     // Production AWS Domain
-    return 'https://biz.pasindubuddhima.me';
+    return `${window.location.protocol}//${window.location.host}`;
 };
 
 export const API_BASE_URL = getApiBaseUrl();
